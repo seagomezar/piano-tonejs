@@ -36,13 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
         'baseUrl': './salamander/'
     }).toMaster();
 
-    const allNotes = ["C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4",
-        "C5", "C#5", "D5", "D#5", "E5", "F5", "F#5", "G5", "G#5", "A5", "A#5", "B5",
-        "C6"];
+    const allNotes = ["C1", "C#1", "D1", "D#1", "E1", "F1", "F#1", "G1", "G#1", "A1", "A#1", "B1", 
+    "C2", "C#2", "D2", "D#2", "E2", "F2", "F#2", "G2", "G#2", "A2", "A#2", "B2", 
+    "C3", "C#3", "D3", "D#3", "E3", "F3", "F#3", "G3", "G#3", "A3", "A#3", "B3", 
+    "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4", 
+    "C5", "C#5", "D5", "D#5", "E5", "F5", "F#5", "G5", "G#5", "A5", "A#5", "B5", 
+    "C6", "C#6", "D6", "D#6", "E6", "F6", "F#6", "G6", "G#6", "A6", "A#6", "B6", 
+    "C7" ];
 
     const piano = document.getElementById("piano");
 
-    const widthPerNote = window.innerWidth / (allNotes.length - 4);
+    const widthPerNote = window.innerWidth / (allNotes.length - 25);
     const heightPerNote = 120;
 
     const blackNotesWidthPortion = 2;
@@ -112,22 +116,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("playScale").addEventListener("click", (event)=> {
         Tone.Transport.bpm.rampTo(120);
-        playSong(scale);
+        playSong(scale, 200);
     });
 
     document.getElementById("playSong").addEventListener("click", (event)=> {
         Tone.Transport.bpm.rampTo(50);
-        playSong(song);
+        playSong(song, 500);
     });
 
 
 
-    function playSong(song) {
+    function playSong(song, animationTime) {
         Tone.Transport.cancel();
         Tone.Transport.clear();
-        new Tone.Part((time, note, duration) => {
+        const part = new Tone.Part((time, note, duration) => {
             synth.triggerAttackRelease(note, duration, time);
+            Tone.Draw.schedule(() => {
+                document.getElementById(note).classList.add("pressed");
+                setTimeout(() => {
+                    document.getElementById(note).classList.remove("pressed");
+                }, animationTime);
+			}, time);
         }, song).start(0);
+
         Tone.Transport.start();
     }
 
