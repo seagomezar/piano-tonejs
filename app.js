@@ -47,4 +47,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
         piano.appendChild(node);
     });
 
+    // Option 1 with no DOM intervention
+    const CMajorScale = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
+    let index = 0;
+    let delay = 1000;
+    CMajorScale.forEach((note)=> {
+        setTimeout(() => {
+            synth.triggerAttackRelease(note, "4n");
+        }, delay*index);
+        index++;
+    });
+
+
 });
