@@ -125,6 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+    document.getElementById("clear").addEventListener("click", (event)=> {
+        Tone.Transport.stop();
+		Tone.Transport.cancel();
+		Tone.Transport.clear();
+    });
 
     function playSong(song, animationTime) {
         Tone.Transport.cancel();
@@ -138,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, animationTime);
 			}, time);
         }, song).start(0);
-
         Tone.Transport.start();
     }
 
