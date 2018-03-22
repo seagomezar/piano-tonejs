@@ -37,10 +37,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         // Option 2 with human release time
         node.addEventListener("mousedown", (event)=> {
+            event.target.classList.add('pressed')
             synth.triggerAttack(note);
         });
 
         node.addEventListener("mouseup", (event)=> {
+            event.target.classList.remove("pressed");
             synth.triggerRelease();
         });
         
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     });
 
     // Option 1 with no DOM intervention
+    /*
     const CMajorScale = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
     let index = 0;
     let delay = 1000;
@@ -56,7 +59,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
             synth.triggerAttackRelease(note, "4n");
         }, delay*index);
         index++;
-    });
-
+    });*/
 
 });

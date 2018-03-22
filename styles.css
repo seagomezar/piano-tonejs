@@ -21,3 +21,7 @@ ul > .black {
     margin: 0px 0 0px -10px;
     border-left: 2px solid white;
 }
+
+ul > .pressed {
+    background-color: #888;
+}
