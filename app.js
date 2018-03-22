@@ -69,8 +69,25 @@ document.addEventListener("DOMContentLoaded", ()=>{
     // Option 2 with DOM intervention
     const CMajorScale = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
     const DMajorScale = ["D4", "E4", "F#4", "G4", "A4", "B4", "C#5", "D5"];
+
+    const MAJOR_SCALES = [
+        ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"],
+        ["D4", "E4", "F#4", "G4", "A4", "B4", "C#5", "D5"],
+        ["E4", "F#4", "G#4", "A4", "B4", "C#5", "D#5", "E5"],
+        ["F4", "G4", "A4", "A#4", "C5", "D5", "E5", "F5"],
+        ["G4", "A4", "B4", "C5", "D5", "E5", "F#5", "G5"],
+        ["A4", "B4", "C#5", "D5", "E5", "F#5", "G#5", "A5"],
+        ["B4", "C#5", "D#5", "E5", "F#5", "G#5", "A#5", "B5"]
+    ];
+    let index = 0;
+    MAJOR_SCALES.forEach(scale => {
+        const transformedScale = scale.concat(scale.slice().reverse());
+        setTimeout(() => {
+            playScale(transformedScale, 500);
+        }, index*transformedScale.length*500);
+        index++;
+    });
     
-    playScale(DMajorScale.concat(DMajorScale.slice().reverse()), 500);
 
 });
 
