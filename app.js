@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ["B4", "C#5", "D#5", "E5", "F#5", "G#5", "A#5", "B5"]
     ];
 
-    const song = [
+    const scale = [
         ["0", "C4", "8t"], 
         ["0:0.5", "D4", "8t"], 
         ["0:1", "E4", "8t"],
@@ -87,9 +87,40 @@ document.addEventListener("DOMContentLoaded", () => {
         ["0:3.5", "C5", "8t"]
     ];
 
-    document.getElementById("play").addEventListener("click", (event)=> {
+    const song = [
+        // Compass 1
+        [0, "G#3", '8n'], ["0:0.33", "C#4", '8n'], ["0:0.66", "E4", '8n'],
+        ["0:1", "G#3", '8n'], ["0:1.33", "C#4", '8n'], ["0:1.66", "E4", '8n'],
+        ["0:2", "G#3", '8n'], ["0:2.33", "C#4", '8n'], ["0:2.66", "E4", '8n'],
+        ["0:3", "G#3", '8n'], ["0:3.33", "C#4", '8n'], ["0:3.66", "E4", '8n'],
+        [0, 'C#3', '1m'], [0, 'C#2', '1m'],
+
+        // Compass 2
+        ["1:0", "G#3", '8n'], ["1:0.33", "C#4", '8n'], ["1:0.66", "E4", '8n'],
+        ["1:1", "G#3", '8n'], ["1:1.33", "C#4", '8n'], ["1:1.66", "E4", '8n'],
+        ["1:2", "G#3", '8n'], ["1:2.33", "C#4", '8n'], ["1:2.66", "E4", '8n'],
+        ["1:3", "G#3", '8n'], ["1:3.33", "C#4", '8n'], ["1:3.66", "E4", '8n'],
+        ["1:0", 'B1', '1m'], ["1:0", 'B2', '1m'],
+
+        // Compass 3
+        ["2:0", "A3", '8n'], ["2:0.33", "C#4", '8n'], ["2:0.66", "E4", '8n'],
+        ["2:1", "A3", '8n'], ["2:1.33", "C#4", '8n'], ["2:1.66", "E4", '8n'],
+        ["2:2", "A3", '8n'], ["2:2.33", "D4", '8n'], ["2:2.66", "F#4", '8n'],
+        ["2:3", "A3", '8n'], ["2:3.33", "D4", '8n'], ["2:3.66", "F#4", '8n'],
+        ["2:0", 'A1', '1m'], ["2:0", 'A2', '1m'], ["2:2", 'F#1', '1m'], ["2:2", 'F#2', '1m']
+    ];
+
+    document.getElementById("playScale").addEventListener("click", (event)=> {
+        Tone.Transport.bpm.rampTo(120);
+        playSong(scale);
+    });
+
+    document.getElementById("playSong").addEventListener("click", (event)=> {
+        Tone.Transport.bpm.rampTo(50);
         playSong(song);
     });
+
+
 
     function playSong(song) {
         Tone.Transport.cancel();
