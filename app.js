@@ -29,8 +29,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         // Option 1 with predefined note duration
         // https://github.com/Tonejs/Tone.js/wiki/Time
+        /*
         node.addEventListener("click", (event)=> {
             synth.triggerAttackRelease(note, "3");
+        });
+        */
+
+        // Option 2 with human release time
+        node.addEventListener("mousedown", (event)=> {
+            synth.triggerAttack(note);
+        });
+
+        node.addEventListener("mouseup", (event)=> {
+            synth.triggerRelease();
         });
         
         piano.appendChild(node);
