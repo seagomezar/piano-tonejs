@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", ()=>{
+
+    const synth = new Tone.Synth().toMaster();
     
-    const allNotes = ["C1", "C#1", "D1", "D#1", "E1", "F1", "F#1", "G1", "G#1", "A1", "A#1", "B1", "C2"];
+    const allNotes = ["C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4", "C5"];
 
     const piano = document.getElementById("piano");
     
@@ -24,6 +26,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
             node.style.width = widthPerNote + "px";
             node.style.height = heightPerNote + "px";
         }
+
+        // Option 1 with predefined note duration
+        // https://github.com/Tonejs/Tone.js/wiki/Time
+        node.addEventListener("click", (event)=> {
+            synth.triggerAttackRelease(note, "3");
+        });
         
         piano.appendChild(node);
     });
